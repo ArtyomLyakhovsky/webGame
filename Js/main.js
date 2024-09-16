@@ -47,33 +47,21 @@ function createDrop() {
 ///// ТУТ Я НЕ МОГУ ПОЛУЧИТЬ ВЫЧИСЛЕНИЯ )))))))))))))))))))))))))))))))))))))))))))
 
 
-  const result = `${firstNums}${operations}${secondNums}`
+  const result = mathematicalCalculations()
 
-  // function mathematicalCalculations(result) {
+  function mathematicalCalculations() {
 
-
-
-  const parts = result.split('')
-  const numindex1 = +parts[0]
-  const numindex2 = parts[1]
-  const numindex3 = +parts[2]
-  console.log(numindex1)
-  console.log(numindex2)
-  console.log(numindex3)
-
-//   switch(numindex2) {
-//      case '+':
-//       return numindex1+numindex3;
-//      case '-':
-//       return numindex1-numindex3;  
-//      case '*':
-//       return numindex1*numindex3;
-//     case '/':
-//          return numindex1/numindex3;
-//     }
-
-// }
-// mathematicalCalculations(result)
+  switch(operations) {
+     case '+':
+      return firstNums+secondNums;
+     case '-':
+      return firstNums-secondNums;  
+     case '*':
+      return firstNums*secondNums;
+    case '/':
+      return firstNums/secondNums;
+    }
+}
 
 
 
@@ -151,7 +139,6 @@ buttons.map((button) => {
 
 
 //// ПОЛУЧИЛ ЭЛЕМЕНТ ДЛЯ ОЧКОВ
-let score = document.getElementById('score')
 
 
 
@@ -159,14 +146,14 @@ let score = document.getElementById('score')
 ///////////////////////      На КНОПКУ ENTER  ЗАДАЕМ ФУНКЦИЮ КОТОРАЯ СРАВНИВАЕТ НАШ ОТВЕТ С ОТВЕТАМ КАПЕЛЬ И ЕСЛИ ОТВЕТЫ СОВПАДАЮТ, ТО КАПЛИ УДАЛЯЮТСЯ И ДИСПЛЕЙ КАЛЬКУЛЯТОРА СТАНОВИТСЯ НА 0
 enter.addEventListener('click', function(){
   const drops = document.querySelectorAll('.drop')
+  let score = document.getElementById('score')
+  score.innerHTML = 10
   drops.forEach((el) => {
-    console.log(el.dataset.result)
-    console.log(input.value)
     if (el.dataset.result === input.value) {
       el.remove()
       input.value = ''
-    } 
-
+      score.innerHTML += score.innerHTML
+    }
   })
 
 
