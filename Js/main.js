@@ -22,14 +22,19 @@ function renderModal() {
   const modal = `<section class='card'>
         <h1 class='title'>${isPlayGame ? 'GAME OVER' : 'Начать игру'}</h1>
         <p>${isPlayGame ? `Ваш счет: ${score}` : ''}</p>
-        <a href='#' class='start' id='start'>${isPlayGame ? 'Начать заного' : 'Начать игру'}</a>
+        <a href='#' class='start' id='start'>${isPlayGame ? 'ГЛАВНОЕ МЕНЮ' : 'Начать игру'}</a>
     </section>`;
 
   document.body.insertAdjacentHTML('afterbegin', modal);
 
-  const startBtnEl = document.getElementById('start');
-  startBtnEl.addEventListener('click', handlerStartBtn);
 
+  const startBtnEl = document.getElementById('start');
+  startBtnEl.addEventListener('click', isPlayGame ? reloadPage : handlerStartBtn);
+}
+
+function reloadPage (event) {
+  event.preventDefault();
+  window.location.reload()
 }
 
 
@@ -189,7 +194,6 @@ function acceptWrongAnswer() {
     clearTimeout(idTimeout)
     clearTimeout(idRenderDropTimeout)
     isPlayGame = false;
-    // dropContent.innerHTML =''
   }
 
 }
